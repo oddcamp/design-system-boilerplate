@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// Setup
+// -----------------------------------------------------------------------------
+
+*,
+*:before,
+*:after {
+  @include ds-box-sizing(border-box);
+  @include ds-font-smoothing;
+}
+
+html {
+  direction: $ds-text-direction;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: $ds-color-background;
+  color: $ds-color-text;
+  font-family: $ds-font-family;
+  font-size: $ds-rem-base;
+  font-style: $ds-font-style;
+  font-weight: $ds-font-weight;
+  line-height: $ds-line-height;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 0;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}

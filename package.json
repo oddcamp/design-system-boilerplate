@@ -1,0 +1,12 @@
+{
+  "name": "design-system-boilerplate",
+  "version": "1.0.0",
+  "description": "Kollegorna's boilerplate for design systems",
+  "main": "index.js",
+  "repository": "https://github.com/kollegorna/design-system-boilerplate",
+  "author": "Kollegorna AB",
+  "license": "MIT",
+  "dependencies": {
+    "normalize-scss": "^7.0.0"
+  }
+}

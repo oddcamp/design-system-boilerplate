@@ -1,0 +1,19 @@
+
+// -----------------------------------------------------------------------------
+// Button: Default
+// -----------------------------------------------------------------------------
+
+%ds-button {
+  background: none;
+  border: 1px solid $ds-color-orange;
+  border-radius: 999em;
+  cursor: pointer;
+  display: inline-block;
+  font-size: $ds-font-size-body-copy;
+  height: 40px;
+  line-height: 38px;
+  padding: 0 20px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}

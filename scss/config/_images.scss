@@ -1,0 +1,10 @@
+// This is just an example of how to properly setup image paths.
+
+$ds-images-path: '../images/' !default;
+$ds-image-kollegorna-k: "#{$ds-images-path}file.svg" !default;
+
+/*
+body {
+  background: image-url($ds-image-kollegorna-k);
+}
+*/
