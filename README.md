@@ -6,10 +6,11 @@ This is a boilerplate for setting up design systems at Kollegorna. It provides a
 
 We suggest you keep the design system in its own folder, inside the main application's assets folder. This will let you easily tweak and add to the design system.
 
-1. Navigate to your app's assets folder
+1. Navigate to your app's stylesheets folder
 2. `$ git clone git@github.com:kollegorna/design-system-boilerplate.git design-system`
 3. `$ cd design-system`
 4. `$ git remote rm origin`
+5. Add `@import "design-system/scss/design-system";` to your main css file
 
 Before moving into production, the design system should be moved into its own repository, and declared as a dependency on the master repository.
 
