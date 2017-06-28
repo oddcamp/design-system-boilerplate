@@ -4,13 +4,10 @@
 // These functions are required whenever loading variables. It must be loaded
 // first because it contains functions that we use to calculate rem sizes based
 // on pixel values.
-//
-// This code is lifted from Zurb Foundation
-// https://github.com/zurb/foundation/blob/master/scss/foundation/_functions.scss
 // -----------------------------------------------------------------------------
 
 // This is the default html and body font-size for the base rem value.
-$ds-rem-base: 18px !default;
+$ds-rem-base: 16px !default;
 
 
 // -----------------------------------------------------------------------------
@@ -23,49 +20,46 @@ $ds-rem-base: 18px !default;
 
 
 // -----------------------------------------------------------------------------
-// Convert to rem
-// -----------------------------------------------------------------------------
-@function ds-convert-to-rem($value, $base-value: $ds-rem-base) {
-  $value: ds-strip-unit($value) / ds-strip-unit($base-value) * 1rem;
-  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
-  @return $value;
-}
-
-
-// -----------------------------------------------------------------------------
 // Rem calc
 //
 // New Syntax, allows to optionally calculate on a different base value to
 // counter compounding effect of rem's.
 // Call with 1, 2, 3 or 4 parameters, 'px' is not required but supported:
 //
-//   ds-rem-calc(10 20 30px 40);
+//   ds-rem(10 20 30px 40);
 //
 // Space delimited, if you want to delimit using comma's, wrap it in another
 // pair of brackets.
 //
-//   ds-rem-calc((10, 20, 30, 40px));
+//   ds-rem((10, 20, 30, 40px));
 //
 // Optionally call with a different base (eg: 8px) to calculate rem.
 //
-//   ds-rem-calc(16px 32px 48px, 8px);
+//   ds-rem(16px 32px 48px, 8px);
 //
 // If you require to comma separate your list
 //
-//   ds-rem-calc((16px, 32px, 48), 8px);
+//   ds-rem((16px, 32px, 48), 8px);
 // -----------------------------------------------------------------------------
-
-@function ds-rem-calc($values, $base-value: $ds-rem-base) {
+@function ds-emrem-calc($values, $base-value: $ds-rem-base, $type: 'em') {
   $max: length($values);
-
-  @if $max == 1 { @return ds-convert-to-rem(nth($values, 1), $base-value); }
-
-  $remValues: ();
+  $newValues: ();
+  @if($type == 'em') { $type: 1em; }
+  @else { $type: 1rem; }
   @for $i from 1 through $max {
-    $remValues: append($remValues, ds-convert-to-rem(nth($values, $i), $base-value));
+    $newValues: append($newValues, ds-strip-unit(nth($values, $i)) / ds-strip-unit($base-value) * $type);
   }
-  @return $remValues;
+  @return $newValues;
 }
+
+@function ds-em($values, $base-value: $ds-rem-base) {
+  @return ds-emrem-calc($values, $ds-rem-base, 'em');
+}
+
+@function ds-rem($values, $base-value: $ds-rem-base) {
+  @return ds-emrem-calc($values, $ds-rem-base, 'rem');
+}
+
 
 
 // -----------------------------------------------------------------------------
@@ -75,8 +69,8 @@ $ds-rem-base: 18px !default;
 $ds-font-family: sans-serif !default;
 $ds-font-family-complementary: serif !default;
 $ds-font-size: 100% !default;
-$ds-font-size-body-copy: ds-rem-calc(16) !default;
-$ds-font-size-small: ds-rem-calc(12) !default;
+$ds-font-size-body-copy: ds-rem(16) !default;
+$ds-font-size-small: ds-rem(12) !default;
 $ds-font-smoothing: antialiased !default;
 $ds-font-style: normal !default;
 $ds-font-weight-extra-light: 100 !default;
@@ -96,12 +90,12 @@ $ds-line-height: 1.5 !default;
 // http://typecast.com/blog/a-more-modern-scale-for-web-typography
 // -----------------------------------------------------------------------------
 
-$ds-h1-font-size: ds-rem-calc(60) !default;
-$ds-h2-font-size: ds-rem-calc(36) !default;
-$ds-h3-font-size: ds-rem-calc(26) !default;
-$ds-h4-font-size: ds-rem-calc(20) !default;
-$ds-h5-font-size: ds-rem-calc(16) !default;
-$ds-h6-font-size: ds-rem-calc(14) !default;
+$ds-h1-font-size: ds-rem(60) !default;
+$ds-h2-font-size: ds-rem(36) !default;
+$ds-h3-font-size: ds-rem(26) !default;
+$ds-h4-font-size: ds-rem(20) !default;
+$ds-h5-font-size: ds-rem(16) !default;
+$ds-h6-font-size: ds-rem(14) !default;
 $ds-headings-line-height: 1.4 !default;
 
 
@@ -109,4 +103,4 @@ $ds-headings-line-height: 1.4 !default;
 // Margins
 // -----------------------------------------------------------------------------
 
-$ds-type-margin: ds-rem-calc(20) !default;
+$ds-type-margin: ds-rem(20) !default;
